@@ -11,15 +11,58 @@ public class LockedMeProj {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		Scanner scn = new Scanner(System.in);
+
+		int ch = 0, proceed = 1;
+
+		do {
+			// Menu
+			displayMenu();
+			System.out.println("Enter your choice:");
+			ch = Integer.parseInt(scn.nextLine());
+			switch (ch) {
+			case 1:
+				getAllFiles();
+				break;
+			case 2:
+				createFiles(scn);
+				break;
+			case 3:
+				deleteFiles(scn);
+				break;
+			case 4:
+				searchFile(scn);
+				break;
+			case 5:
+				System.exit(0);
+			default:
+				System.out.println("Invalid Option");
+			}
+		} while (proceed > 0);
+		scn.close();
+	}
+
+	private static void displayMenu() {
+		System.out.println("_*_*_*_*__*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_");
+		System.out.println("\t\t Company Lockers Pvt. Ltd.");
+		System.out.println("_*_*_*_*__*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_");
+
+		System.out.println("1. Display all files \n2. Add new file \n3. Delete a file \n4. Search a file\n5. Exit");
+		System.out.println("_*_*_*_*__*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_");
+	}
+
+	public static void getAllFiles() {
 		// Getting File Names
 		List<String> fileNames = FileManager.getAllFilenames(FOLDERPATH);
 		// Sorting in assending order
 		Collections.sort(fileNames);
 		// Printing File Names
 		fileNames.forEach(System.out::println);
+	}
 
+	public static void createFiles(Scanner scn) {
 		// Variable Declaration
-		Scanner scn = new Scanner(System.in);
 		String fileName = "";
 		int linesCount = 0;
 		List<String> content = new ArrayList<>();
@@ -46,26 +89,28 @@ public class LockedMeProj {
 		else
 			System.out.println("Some error occured. Please admint@lockme.com");
 
-		// Code for deleting a file
+	}
+
+	public static void deleteFiles(Scanner scn) {
 		System.out.println("Enter file name to be deleted:");
-		fileName = scn.nextLine();
+		String fileName = scn.nextLine();
 		// delete the file
 		boolean isDeleted = FileManager.deleteFile(FOLDERPATH, fileName);
 		if (isDeleted)
 			System.out.println("File deleted successfully");
 		else
 			System.out.println("Either file not there or some access issue");
+	}
 
+	public static void searchFile(Scanner scn) {
 		// Code for deleting a file
 		System.out.println("Enter file name to be searched:");
-		fileName = scn.nextLine();
+		String fileName = scn.nextLine();
 		// seach the file
 		boolean isFound = FileManager.searchFile(FOLDERPATH, fileName);
 		if (isFound)
 			System.out.println("File is present in the folder");
 		else
 			System.out.println("File is not present in the folder");
-		scn.close();
 	}
-
 }
