@@ -64,6 +64,7 @@ public class FileManager {
 
 	/**
 	 * This method will delete the file if it is available
+	 * 
 	 * @param folderPath
 	 * @param fileName
 	 * @return boolean
@@ -71,10 +72,27 @@ public class FileManager {
 	public static boolean deleteFile(String folderPath, String fileName) {
 		// Creating File Object
 		File fl = new File(folderPath, fileName);
-		//Deleting the file
+		// Deleting the file
 		if (fl.delete())
 			return true;
 		else
 			return false;
+	}
+
+	/**
+	 * This method will search the file fromt the folder
+	 * @param folderPath
+	 * @param fileName
+	 * @return boolean
+	 */
+	public static boolean searchFile(String folderPath, String fileName) {
+		// Creating File Object
+		File fl = new File(folderPath, fileName);
+		// Searching file in the folder
+		if (fl.exists())
+			return true;
+		else
+			return false;
+
 	}
 }

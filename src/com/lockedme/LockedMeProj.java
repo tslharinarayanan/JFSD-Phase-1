@@ -52,6 +52,16 @@ public class LockedMeProj {
 			System.out.println("File deleted successfully");
 		else 
 			System.out.println("Either file not there or some access issue");
+		
+		//Code for deleting a file
+		System.out.println("Enter file name to be searched:");
+		fileName=scn.nextLine();
+		//seach the file
+		boolean isFound = FileManager.searchFile(FOLDERPATH, fileName);	
+		if(isFound)
+			System.out.println("File is present in the folder");
+		else 
+			System.out.println("File is not present in the folder");
 		scn.close();		
 	}
 
