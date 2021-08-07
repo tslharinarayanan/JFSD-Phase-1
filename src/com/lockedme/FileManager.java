@@ -46,10 +46,11 @@ public class FileManager {
 			// Creating file wirter object to
 			FileWriter fow = new FileWriter(fl);
 
-			//Writing content into file
+			// Writing content into file
 			for (String s : content)
 				fow.write(s + "\n");
 
+			// Closing file writer object
 			fow.close();
 			return true;
 
@@ -59,5 +60,21 @@ public class FileManager {
 			return false;
 		}
 
+	}
+
+	/**
+	 * This method will delete the file if it is available
+	 * @param folderPath
+	 * @param fileName
+	 * @return boolean
+	 */
+	public static boolean deleteFile(String folderPath, String fileName) {
+		// Creating File Object
+		File fl = new File(folderPath, fileName);
+		//Deleting the file
+		if (fl.delete())
+			return true;
+		else
+			return false;
 	}
 }
