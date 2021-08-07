@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lockedme.exceptionhandler.LockedMeException;
+
 public class FileManager {
 	/**
 	 * This method will return the file names from the folder
@@ -56,7 +58,12 @@ public class FileManager {
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				throw new LockedMeException("some error occured. Please contact admin@lockeme.com");
+			} catch (LockedMeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return false;
 		}
 
@@ -73,14 +80,25 @@ public class FileManager {
 		// Creating File Object
 		File fl = new File(folderPath, fileName);
 		// Deleting the file
-		if (fl.delete())
-			return true;
-		else
-			return false;
+		try {
+			if (fl.delete())
+				return true;
+			else
+				return false;
+		} catch (Exception e) {
+			try {
+				throw new LockedMeException("File might not exists or access issue");
+			} catch (LockedMeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return false;
+			}
+		}
 	}
 
 	/**
 	 * This method will search the file fromt the folder
+	 * 
 	 * @param folderPath
 	 * @param fileName
 	 * @return boolean
