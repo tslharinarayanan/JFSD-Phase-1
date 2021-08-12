@@ -43,6 +43,9 @@ public class LockedMeProj {
 		scn.close();
 	}
 
+	/**
+	 * This method will display the menu options for the application
+	 */
 	private static void displayMenu() {
 		System.out.println("_*_*_*_*__*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_");
 		System.out.println("\t\t Company Lockers Pvt. Ltd.");
@@ -52,6 +55,9 @@ public class LockedMeProj {
 		System.out.println("_*_*_*_*__*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_");
 	}
 
+	/**
+	 * This method will retrieve the files
+	 */
 	public static void getAllFiles() {
 		// Getting File Names
 		List<String> fileNames = FileManager.getAllFilenames(FOLDERPATH);
@@ -61,6 +67,10 @@ public class LockedMeProj {
 		fileNames.forEach(System.out::println);
 	}
 
+	/**
+	 * This method will create/update the file
+	 * @param scn
+	 */
 	public static void createFiles(Scanner scn) {
 		// Variable Declaration
 		String fileName = "";
@@ -91,6 +101,10 @@ public class LockedMeProj {
 
 	}
 
+	/**
+	 * This method will delete the file
+	 * @param scn
+	 */
 	public static void deleteFiles(Scanner scn) {
 		System.out.println("Enter file name to be deleted:");
 		String fileName = scn.nextLine();
@@ -102,11 +116,15 @@ public class LockedMeProj {
 			System.out.println("Either file not there or some access issue");
 	}
 
+	/**
+	 * This method will search the file
+	 * @param scn
+	 */
 	public static void searchFile(Scanner scn) {
-		// Code for deleting a file
+		// Code for searching a file
 		System.out.println("Enter file name to be searched:");
 		String fileName = scn.nextLine();
-		// seach the file
+		// search the file
 		boolean isFound = FileManager.searchFile(FOLDERPATH, fileName);
 		if (isFound)
 			System.out.println("File is present in the folder");
