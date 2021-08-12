@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import com.lockedme.exceptionhandler.LockedMeException;
+
 public class LockedMeProj {
 
 	static final String FOLDERPATH = "C:\\Users\\User\\Downloads\\FJSD\\Projects\\Phase1\\LockedMeFiles";
@@ -63,12 +65,18 @@ public class LockedMeProj {
 		List<String> fileNames = FileManager.getAllFilenames(FOLDERPATH);
 		// Sorting in assending order
 		Collections.sort(fileNames);
-		// Printing File Names
-		fileNames.forEach(System.out::println);
+
+		if (fileNames.isEmpty())
+			// Handling empty folder
+			System.out.println("There is no file available");
+		else
+			// Printing File Names
+			fileNames.forEach(System.out::println);
 	}
 
 	/**
 	 * This method will create/update the file
+	 * 
 	 * @param scn
 	 */
 	public static void createFiles(Scanner scn) {
@@ -103,6 +111,7 @@ public class LockedMeProj {
 
 	/**
 	 * This method will delete the file
+	 * 
 	 * @param scn
 	 */
 	public static void deleteFiles(Scanner scn) {
@@ -118,6 +127,7 @@ public class LockedMeProj {
 
 	/**
 	 * This method will search the file
+	 * 
 	 * @param scn
 	 */
 	public static void searchFile(Scanner scn) {
